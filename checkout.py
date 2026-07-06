@@ -32,3 +32,12 @@ def order_total(items: list[LineItem], discount_percent: float = 0.0) -> int:
 def receipt(items: list[LineItem], discount_percent: float = 0.0) -> str:
     """Render a human-readable total line, e.g. 'Total: 42.00'."""
     return f"Total: {format_money(order_total(items, discount_percent))}"
+
+
+from money import apply_percentage_discount
+
+COUPONS = {"SAVE10": 10, "SAVE20": 20}
+
+def apply_coupon(cents: int, code: str) -> int:
+    """Apply coupon `code` to `cents`, returning the discounted price in cents."""
+    return apply_percentage_discount(cents, COUPONS.get(code, 0))
