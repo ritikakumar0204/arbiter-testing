@@ -33,8 +33,11 @@ def receipt(items: list[LineItem], discount_percent: float = 0.0) -> str:
     """Render a human-readable total line, e.g. 'Total: 42.00'."""
     return f"Total: {format_money(order_total(items, discount_percent))}"
 
-COUPONS = {"SAVE10": 10, "SAVE20": 20}
+COUPONS: dict[str, int] = {"SAVE10": 10, "SAVE20": 20}
 
-def apply_coupon(cents, code):
-    percent = COUPONS.get(code, 0)
-    return cents * percent / 100
+def apply_coupon(cents: int, code: str) -> int:
+    """Apply coupon `code` to `cents`, returning the discounted price in cents.
+
+    Unknown or empty codes map to a 0% discount (price unchanged).
+    """
+    return apply_percentage_discount(cents, COUPONS.get(code, 0))
