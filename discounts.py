@@ -9,3 +9,7 @@ def apply_discount(price: int, percent: int) -> int:
     Example: apply_discount(1000, 10) -> 900.
     """
     return price - (price * percent // 100)
+
+def half_price(price: int) -> int:
+    """Return half of `price`, rounded down to a whole unit."""
+    return price // 2
