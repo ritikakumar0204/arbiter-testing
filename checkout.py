@@ -35,6 +35,6 @@ def receipt(items: list[LineItem], discount_percent: float = 0.0) -> str:
 
 COUPONS = {"SAVE10": 10, "SAVE20": 20}
 
-def apply_coupon(cents, code):
-    percent = COUPONS.get(code, 0)
-    return cents * percent / 100
+def apply_coupon(cents: int, code: str) -> int:
+    """Apply coupon `code` to `cents`, returning the discounted price in cents."""
+    return apply_percentage_discount(cents, COUPONS.get(code, 0))
