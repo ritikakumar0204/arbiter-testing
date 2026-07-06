@@ -2,7 +2,7 @@
 
 Keeps cart math in one place so callers get consistent, cents-based totals.
 """
-
+from money import apply_percentage_discount
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -32,8 +32,6 @@ def order_total(items: list[LineItem], discount_percent: float = 0.0) -> int:
 def receipt(items: list[LineItem], discount_percent: float = 0.0) -> str:
     """Render a human-readable total line, e.g. 'Total: 42.00'."""
     return f"Total: {format_money(order_total(items, discount_percent))}"
-
-from money import apply_percentage_discount
 
 COUPONS = {"SAVE10": 10, "SAVE20": 20}
 
