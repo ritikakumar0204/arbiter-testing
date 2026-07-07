@@ -13,3 +13,5 @@ def apply_discount(price: int, percent: int) -> int:
 def half_price(price: int) -> int:
     """Return half of `price`, rounded down to a whole unit."""
     return price // 2
+
+print(false_var)
